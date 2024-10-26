@@ -1,0 +1,23 @@
+/* .scrollArea {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 20px;
+    justify-content: center;
+    
+}
+
+.message {
+    display: flex;
+    margin-right: auto;
+    
+
+}
+
+.leftAuto {
+    justify-self: flex-start;
+}
+
+.rightAuto {
+    margin-right: 50px; /* Pushes the element to the right */
