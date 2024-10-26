@@ -12,7 +12,7 @@ import "./index.css";
 
 export default function ChatbotUI() {
   const [landingPage, setLandingPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [beforeStart, setBeforeStart] = useState(true);
 
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState("Disconnected");
@@ -67,6 +67,7 @@ export default function ChatbotUI() {
 
   const sendPrompt = () => {
     if (socket && socket.readyState === WebSocket.OPEN && prompt != "") {
+      setBeforeStart(false);
       addPrompt(prompt);
       socket.send(prompt);
     } else {
@@ -76,9 +77,12 @@ export default function ChatbotUI() {
 
   return (
     <>
+      
       {landingPage && <LandingPage />}
       {!landingPage && (
-        <div className="flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white">
+        
+        <div className={`${ChatAppCss.container} flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white`}>
+          {beforeStart && <div className={ChatAppCss.talk}>Let's Talk ...</div>}
           <header className={` p-10 flex justify-between items-center`}>
             <img src="src/assets/images/VERSEWISE.svg" alt="" />
           </header>
