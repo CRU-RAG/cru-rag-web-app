@@ -127,7 +127,8 @@ export default function ChatbotUI() {
                       message.isUser ? "bg-gray-700" : "bg-gray-800"
                     } max-w-[80%] mx-2 ${ChatAppCss.text}`}
                   >
-                    {message.isUser ? message.text : <TypingEffect text={message.text} />}
+                    {/* {message.isUser ? message.text : <TypingEffect text={message.text} />} */}
+                    {message.text}
                   </div>
                 )}
                 {message.isUser && (
