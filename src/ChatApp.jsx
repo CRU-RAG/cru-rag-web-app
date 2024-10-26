@@ -7,7 +7,6 @@ import { Send, User } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import ChatAppCss from "./ChatApp.module.css";
 import "./index.css";
-import { CardHeader } from "@mui/material";
 
 export default function ChatbotUI() {
   const [prompt, setPrompt] = useState("");
@@ -92,7 +91,7 @@ export default function ChatbotUI() {
         {thread.map((message, index) => (
           <div
             key={index}
-            className={`${ChatAppCss.message} ${message.isUser ? ChatAppCss.leftAuto : ChatAppCss.rightAuto}`} // Centering messages
+            className={`flex items-end mb-4 justify-center`} // Centering messages
           >
             {!message.isUser && (
               <Avatar className="w-8 h-8 mr-2 mb-1">

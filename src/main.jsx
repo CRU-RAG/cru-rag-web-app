@@ -5,6 +5,6 @@ import ChatApp from './ChatApp.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <ChatApp />
   </StrictMode>,
 )
