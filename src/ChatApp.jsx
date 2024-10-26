@@ -7,6 +7,7 @@ import { Send, User } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import ChatAppCss from "./ChatApp.module.css";
 import LandingPage from "./components/LandingPage";
+import TypingEffect from "./components/TypingEffect";
 import "./index.css";
 
 export default function ChatbotUI() {
@@ -129,7 +130,7 @@ export default function ChatbotUI() {
                       message.isUser ? "bg-gray-700" : "bg-gray-800"
                     } max-w-[80%] mx-2`}
                   >
-                    {message.text}
+                    {message.isUser ? message.text : <TypingEffect text={message.text} />}
                   </div>
                 )}
                 {message.isUser && (
