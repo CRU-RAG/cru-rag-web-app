@@ -21,3 +21,40 @@
 
 .rightAuto {
     margin-right: 50px; /* Pushes the element to the right */
+
+.left {
+    justify-content: end;
+}
+
+.right {
+    justify-content: start;
+}
+
+.textArea {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    gap: 15px;
+}
+
+.searchContainer {
+    position: relative;
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.input {
+    outline: none;
+    border: none;
+    width: 100%;
+    border: 2px solid #FFE7E1;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    
+}
+
+
+
+.searchButton {
+    position: absolute;
+    right: 50px;
+}

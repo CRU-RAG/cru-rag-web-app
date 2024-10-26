@@ -6,20 +6,23 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, User } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import ChatAppCss from "./ChatApp.module.css";
+import LandingPage from "./components/LandingPage";
 import "./index.css";
 
 export default function ChatbotUI() {
+  const [landingPage, setLandingPage] = useState(false)
+
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState("Disconnected");
   const [socket, setSocket] = useState(null);
   const [thread, setThread] = useState([
     {
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      isUser: false,
+      isUser: true,
     },
     {
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      isUser: true,
+      isUser: false,
     },
   ]);
 
@@ -38,7 +41,7 @@ export default function ChatbotUI() {
   };
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://10.150.48.34:8765?id=${uuidv4()}`);
+    const ws = new WebSocket(`ws://10.150.48.136:8765?id=${uuidv4()}`);
 
     setSocket(ws);
 
@@ -79,58 +82,54 @@ export default function ChatbotUI() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white">
+    <>
+      {landingPage && <LandingPage />}
+      {!landingPage && <div className="flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white">
       <header className="p-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-orange-500">VERSEwise</h1>
-        <Button variant="ghost" size="icon">
-          <User className="h-6 w-6 text-orange-500" />
-          <span className="sr-only">User settings</span>
-        </Button>
+        <img src="src/assets/images/VERSEWISE.svg" alt="" />
+        
       </header>
       <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
         {thread.map((message, index) => (
           <div
             key={index}
-            className={`flex items-end mb-4 justify-center`} // Centering messages
+            className={`flex items-end mb-4 ${!message.isUser ? ChatAppCss.right : ChatAppCss.left} ${ChatAppCss.textArea}`} // Centering messages
           >
             {!message.isUser && (
-              <Avatar className="w-8 h-8 mr-2 mb-1">
-                <AvatarFallback className="bg-orange-500 text-white">B</AvatarFallback>
-              </Avatar>
+              <img src="src/assets/images/bot.svg" className={ChatAppCss.accountImg}/>
             )}
+            
             <div
               className={`inline-block p-3 rounded-lg ${
                 message.isUser ? "bg-gray-700" : "bg-gray-800"
-              } max-w-[70%] mx-2`}
+              } max-w-[80%] mx-2`}
             >
               {message.text}
             </div>
             {message.isUser && (
-              <Avatar className="w-8 h-8 ml-2 mb-1">
-                <AvatarFallback className="bg-orange-500 text-white">U</AvatarFallback>
-              </Avatar>
+              <img src="src/assets/images/user.svg" className={ChatAppCss.accountImg}/>
             )}
+            
           </div>
         ))}
       </ScrollArea>
-      <div className="p-4 border-t border-gray-800 flex items-center">
-        <Avatar className="w-8 h-8 mr-2 bg-[#FF5733]">
-          <AvatarFallback>V</AvatarFallback>
-        </Avatar>
+      <div className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}>
+        
         <Input
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type your message..."
-          className="flex-grow mr-2 bg-gray-800 border-gray-700 text-white"
+          className={`${ChatAppCss.input}flex-grow  mr-2 h-[60px] rounded-[20px]  bg-gray-800  text-white`}
         />
         <Button
           onClick={() => sendPrompt()}
           size="icon"
-          className="bg-transparent hover:bg-gray-800"
+          className={`${ChatAppCss.searchButton} bg-transparent hover:bg-gray-800`}
         >
-          <Send className="h-4 w-4 text-[#FF5733]" />
+          <img src="src/assets/images/send.svg" alt="send" />
         </Button>
       </div>
-    </div>
+    </div>}
+    </>
   );
 }

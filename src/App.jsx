@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     
-    const ws = new WebSocket(`ws://10.150.48.34:8765?id=${uuidv4()}`);
+    const ws = new WebSocket(`ws://10.150.48.136:8765?id=${uuidv4()}`);
 
     setSocket(ws);
 

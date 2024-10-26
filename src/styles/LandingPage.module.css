@@ -1,0 +1,7 @@
+.container {
+    width: 100dvh;
+    height: 100dvh;
+    background-image: url("src/assets/images/Pattern.jpg");
+    background-position: center;
+    background-size: cover;
+}
