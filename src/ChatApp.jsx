@@ -86,7 +86,7 @@ export default function ChatbotUI() {
       {landingPage && <LandingPage />}
       {!landingPage && (
         <div className="flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white">
-          <header className="p-4 flex justify-between items-center">
+          <header className={` p-10 flex justify-between items-center`}>
             <img src="src/assets/images/VERSEWISE.svg" alt="" />
           </header>
           <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
