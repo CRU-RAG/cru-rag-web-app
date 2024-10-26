@@ -8,10 +8,11 @@ import { v4 as uuidv4 } from "uuid";
 import ChatAppCss from "./ChatApp.module.css";
 import LandingPage from "./components/LandingPage";
 import TypingEffect from "./components/TypingEffect";
+import FormattedText from "./components/FormattedText";
 import "./index.css";
 
 export default function ChatbotUI() {
-  const [landingPage, setLandingPage] = useState(false);
+  const [landingPage, setLandingPage] = useState(true);
   const [beforeStart, setBeforeStart] = useState(true);
 
   const [prompt, setPrompt] = useState("");
@@ -78,7 +79,7 @@ export default function ChatbotUI() {
   return (
     <>
       
-      {landingPage && <LandingPage />}
+      {landingPage && <LandingPage turnLandingOff={() => setLandingPage(false)}/>}
       {!landingPage && (
         
         <div className={`${ChatAppCss.container} flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white`}>
@@ -127,8 +128,8 @@ export default function ChatbotUI() {
                       message.isUser ? "bg-gray-700" : "bg-gray-800"
                     } max-w-[80%] mx-2 ${ChatAppCss.text}`}
                   >
-                    {/* {message.isUser ? message.text : <TypingEffect text={message.text} />} */}
-                    {message.text}
+                    {message.isUser ? message.text : <TypingEffect text={message.text} />}
+                    {/* <FormattedText text={message.text} /> */}
                   </div>
                 )}
                 {message.isUser && (

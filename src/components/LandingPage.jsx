@@ -1,6 +1,6 @@
 import LandingPageCss from "../styles/LandingPage.module.css";
 
-const LandingPage = () => {
+const LandingPage = ({ turnLandingOff }) => {
   return (
     <div className={LandingPageCss.container}>
       <div className={LandingPageCss.content}>
@@ -20,10 +20,13 @@ const LandingPage = () => {
             the Holy One is understanding.
           </div>
           <div className={LandingPageCss.location}>Proverbs 9:10-12</div>
-        </div>
-        <div className={LandingPageCss.start}>
-          <div className={LandingPageCss.buttonText}>Start Chat</div>
-          <img src="src/assets/images/rightArrow.svg" alt="start" />
+          <div className={LandingPageCss.start} onClick={() => turnLandingOff()}>
+            <div className={LandingPageCss.buttonText}>Start Chat</div>
+            <img
+              src="src/assets/images/rightArrow.svg"
+              alt="start"
+            />
+          </div>
         </div>
       </div>
     </div>
