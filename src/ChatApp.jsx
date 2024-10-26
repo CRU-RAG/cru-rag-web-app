@@ -10,7 +10,8 @@ import LandingPage from "./components/LandingPage";
 import "./index.css";
 
 export default function ChatbotUI() {
-  const [landingPage, setLandingPage] = useState(false)
+  const [landingPage, setLandingPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState("Disconnected");
@@ -21,7 +22,7 @@ export default function ChatbotUI() {
       isUser: true,
     },
     {
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      text: "",
       isUser: false,
     },
   ]);
@@ -30,14 +31,12 @@ export default function ChatbotUI() {
     setThread((prevThread) => [
       ...prevThread,
       { text: newPrompt, isUser: true },
+      { text: "", isUser: false },
     ]);
   };
 
   const addResponse = (newResponse) => {
-    setThread((prevThread) => [
-      ...prevThread,
-      { text: newResponse, isUser: false },
-    ]);
+    setThread((prevThread) => prevThread.map((item, index) => index == prevThread.length - 1 ? {...item, text: newResponse} : item));
   };
 
   useEffect(() => {
@@ -84,57 +83,88 @@ export default function ChatbotUI() {
   return (
     <>
       {landingPage && <LandingPage />}
-      {!landingPage && <div className="flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white">
-      <header className="p-4 flex justify-between items-center">
-        <img src="src/assets/images/VERSEWISE.svg" alt="" />
-        
-      </header>
-      <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
-        {thread.map((message, index) => (
+      {!landingPage && (
+        <div className="flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white">
+          <header className="p-4 flex justify-between items-center">
+            <img src="src/assets/images/VERSEWISE.svg" alt="" />
+          </header>
+          <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
+            {thread.map((message, index) => (
+              <div
+                key={index}
+                className={`flex items-end mb-4 ${
+                  !message.isUser ? ChatAppCss.right : ChatAppCss.left
+                } ${ChatAppCss.textArea}`} // Centering messages
+              >
+                {!message.isUser && message.text !== "" && (
+                  <img
+                    src="src/assets/images/bot.svg"
+                    className={ChatAppCss.accountImg}
+                  />
+                )}
+
+                {message.text == "" && (
+                  <div className={ChatAppCss.loading}>
+                    <img
+                      src="src/assets/images/bot.svg"
+                      className={ChatAppCss.accountImg}
+                    />
+                    <div
+                      className={`inline-block p-3 rounded-lg ${
+                        message.isUser ? "bg-gray-700" : "bg-gray-800"
+                      } max-w-[80%] mx-2 ${ChatAppCss.textContainer}`}
+                    >
+                      <div className={ChatAppCss.dots}>
+                        <div className={ChatAppCss.dot}></div>
+                        <div className={ChatAppCss.dot}></div>
+                        <div className={ChatAppCss.dot}></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {message.text !== "" && (
+                  <div
+                    className={`inline-block p-3 rounded-lg ${
+                      message.isUser ? "bg-gray-700" : "bg-gray-800"
+                    } max-w-[80%] mx-2`}
+                  >
+                    {message.text}
+                  </div>
+                )}
+                {message.isUser && (
+                  <img
+                    src="src/assets/images/user.svg"
+                    className={ChatAppCss.accountImg}
+                  />
+                )}
+              </div>
+            ))}
+          </ScrollArea>
           <div
-            key={index}
-            className={`flex items-end mb-4 ${!message.isUser ? ChatAppCss.right : ChatAppCss.left} ${ChatAppCss.textArea}`} // Centering messages
+            className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}
           >
-            {!message.isUser && (
-              <img src="src/assets/images/bot.svg" className={ChatAppCss.accountImg}/>
-            )}
-            
-            <div
-              className={`inline-block p-3 rounded-lg ${
-                message.isUser ? "bg-gray-700" : "bg-gray-800"
-              } max-w-[80%] mx-2`}
+            <Input
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="Type your message..."
+              className={`${ChatAppCss.input}flex-grow  mr-2 h-[60px] rounded-[20px]  bg-gray-800  text-white`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  sendPrompt(); // Call the send function on Enter key press
+                }
+              }}
+            />
+            <Button
+              onClick={() => sendPrompt()}
+              size="icon"
+              className={`${ChatAppCss.searchButton} bg-transparent hover:bg-gray-800`}
             >
-              {message.text}
-            </div>
-            {message.isUser && (
-              <img src="src/assets/images/user.svg" className={ChatAppCss.accountImg}/>
-            )}
-            
+              <img src="src/assets/images/send.svg" alt="send" />
+            </Button>
           </div>
-        ))}
-      </ScrollArea>
-      <div className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}>
-        
-        <Input
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Type your message..."
-          className={`${ChatAppCss.input}flex-grow  mr-2 h-[60px] rounded-[20px]  bg-gray-800  text-white`}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              sendPrompt(); // Call the send function on Enter key press
-            }
-          }}
-        />
-        <Button
-          onClick={() => sendPrompt()}
-          size="icon"
-          className={`${ChatAppCss.searchButton} bg-transparent hover:bg-gray-800`}
-        >
-          <img src="src/assets/images/send.svg" alt="send" />
-        </Button>
-      </div>
-    </div>}
+        </div>
+      )}
     </>
   );
 }
