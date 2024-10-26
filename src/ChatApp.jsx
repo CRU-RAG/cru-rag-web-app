@@ -120,6 +120,11 @@ export default function ChatbotUI() {
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type your message..."
           className={`${ChatAppCss.input}flex-grow  mr-2 h-[60px] rounded-[20px]  bg-gray-800  text-white`}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              sendPrompt(); // Call the send function on Enter key press
+            }
+          }}
         />
         <Button
           onClick={() => sendPrompt()}
