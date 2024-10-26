@@ -1,14 +1,15 @@
+.container{ 
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
+
 .input {
     width: 90%;
     margin: 0 auto;
     border: 1px solid black;
     height: 50px;
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-}
-
-.container{ 
     display: flex;
     align-items: center;
 }
