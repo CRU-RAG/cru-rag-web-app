@@ -18,14 +18,7 @@ export default function ChatbotUI() {
   const [status, setStatus] = useState("Disconnected");
   const [socket, setSocket] = useState(null);
   const [thread, setThread] = useState([
-    {
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      isUser: true,
-    },
-    {
-      text: "",
-      isUser: false,
-    },
+
   ]);
 
   const addPrompt = (newPrompt) => {
@@ -128,7 +121,7 @@ export default function ChatbotUI() {
                   <div
                     className={`inline-block p-3 rounded-lg ${
                       message.isUser ? "bg-gray-700" : "bg-gray-800"
-                    } max-w-[80%] mx-2`}
+                    } max-w-[80%] mx-2 ${ChatAppCss.text}`}
                   >
                     {message.isUser ? message.text : <TypingEffect text={message.text} />}
                   </div>

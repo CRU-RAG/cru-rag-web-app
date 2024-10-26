@@ -22,6 +22,10 @@
 .rightAuto {
     margin-right: 50px; /* Pushes the element to the right */
 
+* {
+    font-family: "Noto Sans", sans-serif;
+}
+
 .left {
   justify-content: end;
 }
@@ -49,6 +53,13 @@
   width: 100%;
   border: 2px solid #ffe7e1;
   box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.text {
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 24px;
+    
 }
 
 .searchButton {
