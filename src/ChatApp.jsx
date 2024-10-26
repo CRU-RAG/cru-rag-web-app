@@ -73,7 +73,7 @@ export default function ChatbotUI() {
   }, []);
 
   const sendPrompt = () => {
-    if (socket && socket.readyState === WebSocket.OPEN) {
+    if (socket && socket.readyState === WebSocket.OPEN && prompt != "") {
       addPrompt(prompt);
       socket.send(prompt);
     } else {
