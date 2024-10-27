@@ -18,9 +18,7 @@ export default function ChatbotUI() {
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState("Disconnected");
   const [socket, setSocket] = useState(null);
-  const [thread, setThread] = useState([
-
-  ]);
+  const [thread, setThread] = useState([]);
 
   const addPrompt = (newPrompt) => {
     setThread((prevThread) => [
@@ -80,6 +78,24 @@ export default function ChatbotUI() {
     }
   };
 
+  const handleTextAreaResize = (event) => {
+    const textarea = event.target;
+    // textarea.style.height = 'auto';
+    if (textarea.scrollHeight < 100) {
+      textarea.style.height = "80px";
+      textarea.classList.add("notScrollable");
+    } else {
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 500)}px`;
+      textarea.classList.remove("notSscrollable");
+    }
+  };
+
+  const reset = (e) => {
+    const textarea = e.target;
+    textarea.style.height = "80px";
+    textarea.value = "";
+  };
+
   return (
     <>
       {landingPage && (
@@ -137,7 +153,9 @@ export default function ChatbotUI() {
                     }`}
                   >
                     {message.isUser ? (
-                      <div className={ChatAppCss.userPrompt}>{message.text}</div>
+                      <div className={ChatAppCss.userPrompt}>
+                        {message.text}
+                      </div>
                     ) : (
                       <TypingEffect text={message.text} />
                     )}
@@ -156,19 +174,28 @@ export default function ChatbotUI() {
           <div
             className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}
           >
-            <Input
+            <textarea
               value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
+              onChange={(e) => {
+                setPrompt(e.target.value);
+                handleTextAreaResize();
+              }}
               placeholder="Type your message..."
-              className={`${ChatAppCss.input}flex-grow  mr-2 h-[60px] rounded-[20px]  bg-gray-800  text-white`}
+              className={`${ChatAppCss.input} flex-grow mr-2 h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[20px] pr-[80px] font-light text-2xl resize-none overflow-y-auto`}
+              onInput={handleTextAreaResize}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  sendPrompt(); // Call the send function on Enter key press
+                  e.preventDefault(); // Prevents newline on enter in the textarea
+                  sendPrompt();
+                  reset(e);
                 }
               }}
             />
             <Button
-              onClick={() => sendPrompt()}
+              onClick={() => {
+                sendPrompt();
+                reset(e);
+              }}
               size="icon"
               className={`${ChatAppCss.searchButton} bg-transparent hover:bg-gray-800`}
             >
