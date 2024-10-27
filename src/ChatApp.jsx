@@ -157,9 +157,12 @@ export default function ChatbotUI() {
                         {message.text}
                       </div>
                     ) : (
-                      <TypingEffect text={message.text} />
+                      // <TypingEffect text={message.text} />
+
+                       <FormattedText text={message.text} />
                     )}
-                    {/* <FormattedText text={message.text} /> */}
+                    
+
                   </div>
                 )}
                 {message.isUser && (
