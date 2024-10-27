@@ -36,6 +36,11 @@
 
 .right {
   justify-content: start;
+  /* max-width: 700px; */
+}
+
+.lessSize {
+    width: 650px;
 }
 
 .textArea {
@@ -64,6 +69,10 @@
     font-size: 18px;
     line-height: 24px;
     
+}
+
+.userPrompt {
+    padding: 10px !important;
 }
 
 .searchButton {

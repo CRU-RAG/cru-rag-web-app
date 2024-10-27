@@ -20,5 +20,5 @@ export default function TypingEffect({ text }) {
 
   }, [text, typingSpeed]);
 
-  return <div>{displayedText}</div>;
+  return <div style={{ padding: 10 }}>{displayedText}</div>;
 }
