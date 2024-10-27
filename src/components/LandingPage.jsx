@@ -3,6 +3,11 @@ import LandingPageCss from "../styles/LandingPage.module.css";
 const LandingPage = ({ turnLandingOff }) => {
   return (
     <div className={LandingPageCss.container}>
+      <img
+        className={LandingPageCss.logo}
+        src="src/assets/images/VERSEWISE.svg"
+        alt=""
+      />
       <div className={LandingPageCss.content}>
         <img
           src="src/assets/images/man.png"
@@ -20,12 +25,12 @@ const LandingPage = ({ turnLandingOff }) => {
             the Holy One is understanding.
           </div>
           <div className={LandingPageCss.location}>Proverbs 9:10-12</div>
-          <div className={LandingPageCss.start} onClick={() => turnLandingOff()}>
+          <div
+            className={LandingPageCss.start}
+            onClick={() => turnLandingOff()}
+          >
             <div className={LandingPageCss.buttonText}>Start Chat</div>
-            <img
-              src="src/assets/images/rightArrow.svg"
-              alt="start"
-            />
+            <img src="src/assets/images/rightArrow.svg" alt="start" />
           </div>
         </div>
       </div>
