@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,30 @@ export default function ChatbotUI() {
   const [status, setStatus] = useState("Disconnected");
   const [socket, setSocket] = useState(null);
   const [thread, setThread] = useState([]);
+
+  const bottomOfPanelRef = useRef(null);
+
+  useEffect(() => {
+    if (bottomOfPanelRef.current) {
+      bottomOfPanelRef.current.scrollIntoView();
+    }
+  }, [thread])
+
+  // used to test if scrolling to the bottom when a chat is added to thread works. it adds a user and a bot message every
+  // 2 seconds. Implemented because server was not active at the time of writting.
+  //
+  // const addToThread = () => {
+  //   console.log("called")
+  //   setThread((prevThread) => [
+  //     ...prevThread,
+  //     {text: "ajdsfkblakdsjbfakljsdbflkajsbflkajsbdlkjabsdf", isUser: true},
+  //   {text: "ajdsfkblakdsjbfakljsdbflkajsbflkajsbdlkjabsdf", isUser: false}
+  //   ])
+  // }
+  
+  // useEffect(() => {
+  //   setInterval(() => addToThread(), 2000)
+  // }, [])
 
   const addPrompt = (newPrompt) => {
     setThread((prevThread) => [
@@ -52,6 +76,10 @@ export default function ChatbotUI() {
         addResponse(message);
         setPrompt("");
       }
+
+      const scrollArea = document.getElementById('scroll');
+      console.log("this is the scrollArea", scrollArea)
+      scrollArea.scrollTop = scrollArea.scrollHeight;
     };
 
     ws.onclose = () => {
@@ -107,9 +135,9 @@ export default function ChatbotUI() {
         >
           {beforeStart && <div className={ChatAppCss.talk}>Let's Talk ...</div>}
           <header className={` p-10 flex justify-between items-center`}>
-            <img src="src/assets/images/VERSEWISE.svg" alt="" />
+            <img src="src/assets/images/VERSEWISE.svg" alt=""/>
           </header>
-          <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
+          <ScrollArea id='scroll' className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
             {thread.map((message, index) => (
               <div
                 key={index}
@@ -173,6 +201,7 @@ export default function ChatbotUI() {
                 )}
               </div>
             ))}
+            <div ref={bottomOfPanelRef}></div>
           </ScrollArea>
           <div
             className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}
