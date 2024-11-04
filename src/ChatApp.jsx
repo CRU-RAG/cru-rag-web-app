@@ -103,11 +103,11 @@ export default function ChatbotUI() {
       )}
       {!landingPage && (
         <div
-          className={`${ChatAppCss.container} flex flex-col h-screen bg-[url('src/assets/images/Pattern.jpg')] bg-cover bg-center text-white`}
+          className={`${ChatAppCss.container} flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
         >
           {beforeStart && <div className={ChatAppCss.talk}>Let's Talk ...</div>}
           <header className={` p-10 flex justify-between items-center`}>
-            <img src="src/assets/images/VERSEWISE.svg" alt="" />
+            <img src="/images/VERSEWISE.svg" alt="" />
           </header>
           <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
             {thread.map((message, index) => (
@@ -119,7 +119,7 @@ export default function ChatbotUI() {
               >
                 {!message.isUser && message.text !== "" && (
                   <img
-                    src="src/assets/images/bot.svg"
+                    src="/images/bot.svg"
                     className={ChatAppCss.accountImg}
                   />
                 )}
@@ -127,7 +127,7 @@ export default function ChatbotUI() {
                 {message.text == "" && (
                   <div className={ChatAppCss.loading}>
                     <img
-                      src="src/assets/images/bot.svg"
+                      src="/images/bot.svg"
                       className={ChatAppCss.accountImg}
                     />
                     <div
@@ -167,7 +167,7 @@ export default function ChatbotUI() {
                 )}
                 {message.isUser && (
                   <img
-                    src="src/assets/images/user.svg"
+                    src="/images/user.svg"
                     className={ChatAppCss.accountImg}
                   />
                 )}
@@ -202,7 +202,7 @@ export default function ChatbotUI() {
               size="icon"
               className={`${ChatAppCss.searchButton} bg-transparent hover:bg-gray-800`}
             >
-              <img src="src/assets/images/send.svg" alt="send" />
+              <img src="/images/send.svg" alt="send" />
             </Button>
           </div>
         </div>
