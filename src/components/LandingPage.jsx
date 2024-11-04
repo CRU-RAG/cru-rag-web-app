@@ -5,12 +5,12 @@ const LandingPage = ({ turnLandingOff }) => {
     <div className={LandingPageCss.container}>
       <img
         className={LandingPageCss.logo}
-        src="src/assets/images/VERSEWISE.svg"
+        src="/images/VERSEWISE.svg"
         alt=""
       />
       <div className={LandingPageCss.content}>
         <img
-          src="src/assets/images/man.png"
+          src="/images/man.png"
           alt="man wearing vr holding a bible"
           className={LandingPageCss.man}
         />
@@ -30,7 +30,7 @@ const LandingPage = ({ turnLandingOff }) => {
             onClick={() => turnLandingOff()}
           >
             <div className={LandingPageCss.buttonText}>Start Chat</div>
-            <img src="src/assets/images/rightArrow.svg" alt="start" />
+            <img src="/images/rightArrow.svg" alt="start" />
           </div>
         </div>
       </div>
