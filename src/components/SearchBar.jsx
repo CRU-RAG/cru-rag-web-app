@@ -11,7 +11,7 @@ const SearchBar = ({prompt, handleSendPrompt, handleSetPrompt }) => {
   return (
     <div className={SearchBarCss.container}>
       <input className={SearchBarCss.input} onKeyDown={handleKeyDown} value={prompt} type="text" onChange={(e) => handleSetPrompt(e.target.value)}></input>
-      <img src="src/assets/send.svg" alt="send" onClick={() => handleSendPrompt()}/>
+      <img src="/send.svg" alt="send" onClick={() => handleSendPrompt()}/>
     </div>
   );
 };
