@@ -53,7 +53,12 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		screens: {
+			'xl' : '1300px',
+			'l' : '1100px',
+			'm' : '850px'
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

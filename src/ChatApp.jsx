@@ -113,9 +113,9 @@ export default function ChatbotUI() {
             {thread.map((message, index) => (
               <div
                 key={index}
-                className={`flex items-end mb-4 ${
+                className={`flex items-end gap-[15px] mb-4 ${
                   !message.isUser ? ChatAppCss.right : ChatAppCss.left
-                } ${ChatAppCss.textArea}`} // Centering messages
+                } mx-auto w-[95%] m:w-[90%] l:w-[80%] xl:w-[70%]`} // Centering messages
               >
                 {!message.isUser && message.text !== "" && (
                   <img

@@ -23,11 +23,11 @@
     margin-right: 50px; /* Pushes the element to the right */
 
 * {
-    font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .container {
-    position: relative;
+  position: relative;
 }
 
 .left {
@@ -40,14 +40,7 @@
 }
 
 .lessSize {
-    width: 650px;
-}
-
-.textArea {
-  width: 70%;
-  margin: 0 auto;
-  display: flex;
-  gap: 15px;
+  width: 650px;
 }
 
 .searchContainer {
@@ -62,48 +55,41 @@
   width: 100%;
   border: 2px solid #ffe7e1;
   box-shadow: 0px 4px 4px 0px #00000040;
-  text-wrap:wrap;
-
-
-
+  text-wrap: wrap;
 }
 
 /* Custom scrollbar styling */
 textarea::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  textarea::-webkit-scrollbar-track {
+  width: 8px;
+}
 
-    border-radius: 10px;
-  }
-  
-  textarea::-webkit-scrollbar-thumb {
-    background-color: #6b7280;
-    border-radius: 10px;
-    
-  }
-  
-  /* Transparent thumb background on hover, with a white outline */
-  textarea::-webkit-scrollbar-thumb:hover {
-    background-color: transparent; /* Makes the thumb background invisible */
-    border: 2px solid white; /* White border outline */
-  }
+textarea::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
 
-  .notScrollable::-webkit-scrollbar {
-    display: none !important;
-  }
-  
+textarea::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+  border-radius: 10px;
+}
+
+/* Transparent thumb background on hover, with a white outline */
+textarea::-webkit-scrollbar-thumb:hover {
+  background-color: transparent; /* Makes the thumb background invisible */
+  border: 2px solid white; /* White border outline */
+}
+
+.notScrollable::-webkit-scrollbar {
+  display: none !important;
+}
 
 .text {
-    font-weight: 200;
-    font-size: 18px;
-    line-height: 24px;
-    
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .userPrompt {
-    padding: 10px !important;
+  padding: 10px !important;
 }
 
 .searchButton {
@@ -118,10 +104,10 @@ textarea::-webkit-scrollbar {
 }
 
 .textContainer {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-around !important;
-  }
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+}
 
 .dots {
   display: flex;
@@ -129,8 +115,6 @@ textarea::-webkit-scrollbar {
   align-items: center;
   margin-bottom: -10px;
 }
-
-
 
 .dot {
   width: 8px;
@@ -163,16 +147,15 @@ textarea::-webkit-scrollbar {
   }
 }
 
-
 .talk {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-    line-height: 85px;
-    font-size: 62px;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  line-height: 85px;
+  font-size: 62px;
 }
