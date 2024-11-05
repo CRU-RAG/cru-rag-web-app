@@ -178,7 +178,6 @@ export default function ChatbotUI() {
             className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}
           >
             <textarea
-              value={prompt}
               onChange={(e) => {
                 setPrompt(e.target.value);
                 handleTextAreaResize();
