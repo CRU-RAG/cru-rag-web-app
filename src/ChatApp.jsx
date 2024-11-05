@@ -148,7 +148,7 @@ export default function ChatbotUI() {
                   <div
                     className={`inline-block p-3 rounded-lg ${
                       message.isUser ? "bg-gray-700 ml-[78px] " : "bg-gray-800 mr-[78px] "
-                    }  mx-2 font-extralight text-[18px] leading-[24px] w-[100%] m:w-[680px] `}
+                    }  mx-2 font-extralight text-[18px] leading-[24px] w-[100%] m:w-[680px] max-w-fit `}
                   >
                     {message.isUser ? (
                       <div className={ChatAppCss.userPrompt}>
