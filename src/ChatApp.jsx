@@ -28,22 +28,6 @@ export default function ChatbotUI() {
     }
   }, [thread])
 
-  // used to test if scrolling to the bottom when a chat is added to thread works. it adds a user and a bot message every
-  // 2 seconds. Implemented because server was not active at the time of writting.
-  //
-  // const addToThread = () => {
-  //   console.log("called")
-  //   setThread((prevThread) => [
-  //     ...prevThread,
-  //     {text: "ajdsfkblakdsjbfakljsdbflkajsbflkajsbdlkjabsdf", isUser: true},
-  //   {text: "ajdsfkblakdsjbfakljsdbflkajsbflkajsbdlkjabsdf", isUser: false}
-  //   ])
-  // }
-  
-  // useEffect(() => {
-  //   setInterval(() => addToThread(), 2000)
-  // }, [])
-
   const addPrompt = (newPrompt) => {
     setThread((prevThread) => [
       ...prevThread,
