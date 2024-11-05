@@ -147,10 +147,8 @@ export default function ChatbotUI() {
                 {message.text !== "" && (
                   <div
                     className={`inline-block p-3 rounded-lg ${
-                      message.isUser ? "bg-gray-700" : "bg-gray-800"
-                    } max-w-[80%] mx-2 ${ChatAppCss.text} ${
-                      ChatAppCss.lessSize
-                    }`}
+                      message.isUser ? "bg-gray-700 ml-[78px] " : "bg-gray-800 mr-[78px] "
+                    }  mx-2 font-extralight text-[18px] leading-[24px] w-[100%] m:w-[680px] `}
                   >
                     {message.isUser ? (
                       <div className={ChatAppCss.userPrompt}>

@@ -39,10 +39,6 @@
   /* max-width: 700px; */
 }
 
-.lessSize {
-  width: 650px;
-}
-
 .searchContainer {
   position: relative;
   width: 70vw;
@@ -80,12 +76,6 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 .notScrollable::-webkit-scrollbar {
   display: none !important;
-}
-
-.text {
-  font-weight: 200;
-  font-size: 18px;
-  line-height: 24px;
 }
 
 .userPrompt {
