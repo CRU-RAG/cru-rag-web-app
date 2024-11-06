@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,14 @@ export default function ChatbotUI() {
   const [status, setStatus] = useState("Disconnected");
   const [socket, setSocket] = useState(null);
   const [thread, setThread] = useState([]);
+
+  const bottomOfPanelRef = useRef(null);
+
+  useEffect(() => {
+    if (bottomOfPanelRef.current) {
+      bottomOfPanelRef.current.scrollIntoView();
+    }
+  }, [thread])
 
   const addPrompt = (newPrompt) => {
     setThread((prevThread) => [
@@ -52,6 +60,10 @@ export default function ChatbotUI() {
         addResponse(message);
         setPrompt("");
       }
+
+      const scrollArea = document.getElementById('scroll');
+      console.log("this is the scrollArea", scrollArea)
+      scrollArea.scrollTop = scrollArea.scrollHeight;
     };
 
     ws.onclose = () => {
@@ -109,7 +121,7 @@ export default function ChatbotUI() {
           <header className={` p-10 flex justify-between items-center`}>
             <img src="/images/VERSEWISE.svg" alt="" />
           </header>
-          <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
+          <ScrollArea id='scroll' className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
             {thread.map((message, index) => (
               <div
                 key={index}
@@ -173,6 +185,7 @@ export default function ChatbotUI() {
                 )}
               </div>
             ))}
+            <div ref={bottomOfPanelRef}></div>
           </ScrollArea>
           <div
             className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}
