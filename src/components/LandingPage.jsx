@@ -2,7 +2,7 @@ import LandingPageCss from "../styles/LandingPage.module.css";
 
 const LandingPage = ({ turnLandingOff }) => {
   return (
-    <div className={LandingPageCss.container}>
+    <div className={`${LandingPageCss.container} w-full h-full l:h-screen bg-[url('/images/Pattern.jpg')] bg-center bg-cover flex flex-col items-end l:flex-row`}>
       <img
         className={LandingPageCss.logo}
         src="/images/VERSEWISE.svg"
@@ -26,7 +26,7 @@ const LandingPage = ({ turnLandingOff }) => {
           </div>
           <div className={LandingPageCss.location}>Proverbs 9:10-12</div>
           <div
-            className={LandingPageCss.start}
+            className={`mb-[25px] l:mb-0 ${LandingPageCss.start}`}
             onClick={() => turnLandingOff()}
           >
             <div className={LandingPageCss.buttonText}>Start Chat</div>
