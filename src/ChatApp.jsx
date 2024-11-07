@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, User } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
-import ChatAppCss from "./ChatApp.module.css";
+import ChatAppCss from "./styles/ChatApp.module.css";
 import LandingPage from "./components/LandingPage";
 import TypingEffect from "./components/TypingEffect";
 import FormattedText from "./components/FormattedText";
