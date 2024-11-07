@@ -105,7 +105,7 @@ export default function ChatbotUI() {
         <div
           className={`${ChatAppCss.container} flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
         >
-          {beforeStart && <div className={ChatAppCss.talk}>Let's Talk ...</div>}
+          {beforeStart && <div className={`absolute top-0 w-screen h-screen flex justify-center items-center font-normal leading-[85px] text-[48px] s:text-[55px] m:text-[62px]` }>Let's Talk ...</div>}
           <header className={` p-10 flex justify-between items-center`}>
             <img src="/images/VERSEWISE.svg" alt="" />
           </header>

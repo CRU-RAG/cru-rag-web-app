@@ -57,7 +57,8 @@ module.exports = {
 		screens: {
 			'xl' : '1300px',
 			'l' : '1100px',
-			'm' : '850px'
+			'm' : '850px',
+			's' : '500px'
 		}
   	}
   },
