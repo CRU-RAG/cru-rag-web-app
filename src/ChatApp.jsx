@@ -114,28 +114,28 @@ export default function ChatbotUI() {
               <div
                 key={index}
                 className={`flex items-end gap-[15px] mb-4 ${
-                  !message.isUser ? ChatAppCss.right : ChatAppCss.left
-                } mx-auto w-[95%] m:w-[90%] l:w-[80%] xl:w-[70%]`} // Centering messages
+                  !message.isUser ? 'justify-start flex-col' : 'justify-end flex-col-reverse'
+                } mx-auto w-[95%] m:w-[90%] l:w-[80%] xl:w-[70%]  s:flex-row`} // Centering messages
               >
                 {!message.isUser && message.text !== "" && (
                   <img
                     src="/images/bot.svg"
-                    className={ChatAppCss.accountImg}
+                    className={'mr-auto ml-[10px] s:mr-0 s:ml-0'}
                   />
                 )}
 
                 {message.text == "" && (
-                  <div className={ChatAppCss.loading}>
+                  <div className={`flex flex-col gap-[15px] items-end mr-auto s:flex-row`}>
                     <img
                       src="/images/bot.svg"
-                      className={ChatAppCss.accountImg}
+                      className={'mr-auto ml-[10px] s:mr-0 s:ml-0'}
                     />
                     <div
                       className={`inline-block p-3 rounded-lg ${
                         message.isUser ? "bg-gray-700" : "bg-gray-800"
-                      } max-w-[80%] mx-2 ${ChatAppCss.textContainer}`}
+                      } max-w-[80%] mx-2 flex items-center justify-around`}
                     >
-                      <div className={ChatAppCss.dots}>
+                      <div className={`${ChatAppCss.dots} h-[50px]`}>
                         <div className={ChatAppCss.dot}></div>
                         <div className={ChatAppCss.dot}></div>
                         <div className={ChatAppCss.dot}></div>
@@ -147,7 +147,7 @@ export default function ChatbotUI() {
                 {message.text !== "" && (
                   <div
                     className={`inline-block p-3 rounded-lg ${
-                      message.isUser ? "bg-gray-700 ml-[78px] " : "bg-gray-800 mr-[78px] "
+                      message.isUser ? "bg-gray-700 ml-[78px] " : "bg-gray-800 mr-[78px]"
                     }  mx-2 font-extralight text-[18px] leading-[24px] w-[100%] m:w-[680px] max-w-fit `}
                   >
                     {message.isUser ? (
@@ -166,7 +166,7 @@ export default function ChatbotUI() {
                 {message.isUser && (
                   <img
                     src="/images/user.svg"
-                    className={ChatAppCss.accountImg}
+                    className={'mr-[10px] s:mr-[0]'}
                   />
                 )}
               </div>
