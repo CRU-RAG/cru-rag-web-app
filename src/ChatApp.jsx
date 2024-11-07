@@ -120,7 +120,7 @@ export default function ChatbotUI() {
                 {!message.isUser && message.text !== "" && (
                   <img
                     src="/images/bot.svg"
-                    className={'mr-auto ml-[10px] s:mr-0 s:ml-0'}
+                    className={'mr-auto ml-[10px]  s:mr-0 s:ml-0 '}
                   />
                 )}
 
@@ -128,7 +128,7 @@ export default function ChatbotUI() {
                   <div className={`flex flex-col gap-[15px] items-end mr-auto s:flex-row`}>
                     <img
                       src="/images/bot.svg"
-                      className={'mr-auto ml-[10px] s:mr-0 s:ml-0'}
+                      className={'mr-auto ml-[10px] s:mr-0 s:ml-0 '}
                     />
                     <div
                       className={`inline-block p-3 rounded-lg ${
@@ -147,8 +147,8 @@ export default function ChatbotUI() {
                 {message.text !== "" && (
                   <div
                     className={`inline-block p-3 rounded-lg ${
-                      message.isUser ? "bg-gray-700 ml-[78px] " : "bg-gray-800 mr-[78px]"
-                    }  mx-2 font-extralight text-[18px] leading-[24px] w-[100%] m:w-[680px] max-w-fit `}
+                      message.isUser ? "bg-gray-700 s:ml-[78px] " : "bg-gray-800 s:mr-[78px]"
+                    }  mx-2 font-extralight text-[18px] leading-[24px]  s:max-w-fit m:w-[680px]`}
                   >
                     {message.isUser ? (
                       <div className={ChatAppCss.userPrompt}>
