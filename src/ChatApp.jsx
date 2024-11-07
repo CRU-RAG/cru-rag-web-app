@@ -76,6 +76,10 @@ export default function ChatbotUI() {
     } else {
       console.error("WebSocket is not open");
     }
+
+    // on mobile clicking somewhere on the screen hides the keyboard when sending
+    const logo = document.getElementById('logo');
+    logo.click();
   };
 
   const handleTextAreaResize = (event) => {
@@ -106,7 +110,7 @@ export default function ChatbotUI() {
           className={`${ChatAppCss.container} flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
         >
           {beforeStart && <div className={`absolute top-0 w-screen h-screen flex justify-center items-center font-normal leading-[85px] text-[48px] s:text-[55px] m:text-[62px]` }>Let's Talk ...</div>}
-          <header className={` p-6 pb-0 s:p-10 flex justify-between items-center`}>
+          <header id='logo' className={` p-6 pb-0 s:p-10 flex justify-between items-center`}>
             <img src="/images/VERSEWISE.svg" alt="" className='w-60 s:w-[288px]'/>
           </header>
           <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
