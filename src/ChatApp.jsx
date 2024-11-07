@@ -107,13 +107,13 @@ export default function ChatbotUI() {
       )}
       {!landingPage && (
         <div
-          className={`${ChatAppCss.container} flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
+          className={`relative font-sans flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
         >
           {beforeStart && <div className={`absolute top-0 w-screen h-screen flex justify-center items-center font-normal leading-[85px] text-[48px] s:text-[55px] m:text-[62px]` }>Let's Talk ...</div>}
           <header id='logo' className={` p-6 pb-0 s:p-10 flex justify-between items-center`}>
             <img src="/images/VERSEWISE.svg" alt="" className='w-60 s:w-[288px]'/>
           </header>
-          <ScrollArea className={`flex-grow p-4 ${ChatAppCss.scrollArea}`}>
+          <ScrollArea className={`flex-grow p-4`}>
             {thread.map((message, index) => (
               <div
                 key={index}
@@ -139,10 +139,10 @@ export default function ChatbotUI() {
                         message.isUser ? "bg-gray-700" : "bg-gray-800"
                       } max-w-[80%] mx-2 flex items-center justify-around`}
                     >
-                      <div className={`${ChatAppCss.dots} h-[50px]`}>
-                        <div className={ChatAppCss.dot}></div>
-                        <div className={ChatAppCss.dot}></div>
-                        <div className={ChatAppCss.dot}></div>
+                      <div className={` flex gap-[30px] items-center mb-[-10px] h-[50px]`}>
+                        <div className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}></div>
+                        <div className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}></div>
+                        <div className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}></div>
                       </div>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function ChatbotUI() {
                     }  mx-2 font-extralight text-[18px] leading-[24px]  s:max-w-fit m:w-[680px]`}
                   >
                     {message.isUser ? (
-                      <div className={ChatAppCss.userPrompt}>
+                      <div className='p-[10px]'>
                         {message.text}
                       </div>
                     ) : (
@@ -177,7 +177,7 @@ export default function ChatbotUI() {
             ))}
           </ScrollArea>
           <div
-            className={`${ChatAppCss.searchContainer} p-4  border-gray-800 flex items-center`}
+            className={`relative w-[70vw] mx-auto p-4  border-gray-800 flex items-center`}
           >
             <textarea
               value={prompt}
@@ -186,7 +186,7 @@ export default function ChatbotUI() {
                 handleTextAreaResize();
               }}
               placeholder="Type your message..."
-              className={`${ChatAppCss.input} flex-grow mr-2 h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[20px] pr-[80px] font-light text-2xl resize-none overflow-y-auto`}
+              className={` break-words outline-none w-full border-2 border-[#ffe7e1] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex-grow mr-2 h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[20px] pr-[80px] font-light text-2xl resize-none overflow-y-auto `}
               onInput={handleTextAreaResize}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -202,7 +202,7 @@ export default function ChatbotUI() {
                 reset(e);
               }}
               size="icon"
-              className={`${ChatAppCss.searchButton} bg-transparent hover:bg-gray-800`}
+              className={` absolute right-[50px] bottom-[35px] bg-transparent hover:bg-gray-800`}
             >
               <img src="/images/send.svg" alt="send" />
             </Button>

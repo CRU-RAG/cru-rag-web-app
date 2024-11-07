@@ -59,6 +59,9 @@ module.exports = {
 			'l' : '1100px',
 			'm' : '850px',
 			's' : '500px'
+		},
+		fontFamily: {
+			sans: ['Noto Sans', 'sans-serif'],
 		}
   	}
   },
