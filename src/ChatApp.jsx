@@ -85,7 +85,6 @@ export default function ChatbotUI() {
   const handleTextAreaResize = (isSend) => {
     const textarea = document.getElementById('textarea')
     const screenWidth = window.innerWidth;
-    console.log(textarea)
     // textarea.style.height = 'auto';
     if (!isSend) {
       if (textarea.scrollHeight < 50) {
@@ -217,7 +216,7 @@ export default function ChatbotUI() {
               }}
               id='textarea'
               placeholder="Type your message..."
-              className={` break-words outline-none w-full border-2 border-[#ffe7e1] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] h-[60px] m:h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[16px] m:py-[20px] pr-[50px] m:pr-[80px] font-light text-xl m:text-2xl resize-none overflow-y-auto `}
+              className={` break-words outline-none w-full border-2 border-[#ffe7e1] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] h-[60px] m:h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[16px] m:py-[24px] pr-[50px] m:pr-[80px] font-light text-xl m:text-2xl resize-none overflow-y-auto `}
               onInput={() => handleTextAreaResize(false)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
