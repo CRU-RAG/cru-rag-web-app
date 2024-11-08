@@ -78,25 +78,33 @@ export default function ChatbotUI() {
     }
 
     // on mobile clicking somewhere on the screen hides the keyboard when sending
-    const logo = document.getElementById('logo');
+    const logo = document.getElementById("logo");
     logo.click();
   };
 
-  const handleTextAreaResize = (event) => {
-    const textarea = event.target;
+  const handleTextAreaResize = (isSend) => {
+    const textarea = document.getElementById('textarea')
+    const screenWidth = window.innerWidth;
+    console.log(textarea)
     // textarea.style.height = 'auto';
-    if (textarea.scrollHeight < 100) {
-      textarea.style.height = "80px";
-      textarea.classList.add("notScrollable");
+    if (!isSend) {
+      if (textarea.scrollHeight < 50) {
+        textarea.style.height = screenWidth < 500 ? "60px" : "80px";
+        textarea.classList.add("notScrollable");
+      } else {
+          textarea.style.height = `${Math.min(textarea.scrollHeight, (screenWidth < 500 ? 200 : 500))}px`;
+        textarea.classList.remove("notSscrollable");
+      }
     } else {
-      textarea.style.height = `${Math.min(textarea.scrollHeight, 500)}px`;
-      textarea.classList.remove("notSscrollable");
+      textarea.style.height = screenWidth < 500 ? "60px" : "80px";
     }
+    
   };
 
-  const reset = (e) => {
-    const textarea = e.target;
-    textarea.style.height = "80px";
+  const reset = () => {
+    const textarea = document.getElementById('textarea')
+    const screenWidth = window.innerWidth;
+    textarea.style.height = screenWidth < 500 ? "60px" : "80px";
     textarea.value = "";
   };
 
@@ -109,40 +117,65 @@ export default function ChatbotUI() {
         <div
           className={`relative font-sans flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
         >
-          {beforeStart && <div className={`absolute top-0 w-screen h-screen flex justify-center items-center font-normal leading-[85px] text-[48px] s:text-[55px] m:text-[62px]` }>Let's Talk ...</div>}
-          <header id='logo' className={` p-6 pb-0 s:p-10 flex justify-between items-center`}>
-            <img src="/images/VERSEWISE.svg" alt="" className='w-60 s:w-[288px]'/>
+          {beforeStart && (
+            <div
+              className={`absolute top-0 w-screen h-screen flex justify-center items-center font-normal leading-[85px] text-[48px] s:text-[55px] m:text-[62px]`}
+            >
+              Let's Talk ...
+            </div>
+          )}
+          <header
+            id="logo"
+            className={` p-6 pb-0 s:p-10 flex justify-between items-center`}
+          >
+            <img
+              src="/images/VERSEWISE.svg"
+              alt=""
+              className="w-60 s:w-[288px]"
+            />
           </header>
           <ScrollArea className={`flex-grow p-4`}>
             {thread.map((message, index) => (
               <div
                 key={index}
                 className={`flex items-end gap-[15px] mb-4 ${
-                  !message.isUser ? 'justify-start flex-col' : 'justify-end flex-col-reverse'
+                  !message.isUser
+                    ? "justify-start flex-col"
+                    : "justify-end flex-col-reverse"
                 } mx-auto w-[95%] m:w-[90%] l:w-[80%] xl:w-[70%]  s:flex-row`} // Centering messages
               >
                 {!message.isUser && message.text !== "" && (
                   <img
                     src="/images/bot.svg"
-                    className={'mr-auto ml-[10px]  s:mr-0 s:ml-0 '}
+                    className={"mr-auto ml-[10px]  s:mr-0 s:ml-0 "}
                   />
                 )}
 
                 {message.text == "" && (
-                  <div className={`flex flex-col gap-[15px] items-end mr-auto s:flex-row`}>
+                  <div
+                    className={`flex flex-col gap-[15px] items-end mr-auto s:flex-row`}
+                  >
                     <img
                       src="/images/bot.svg"
-                      className={'mr-auto ml-[10px] s:mr-0 s:ml-0 '}
+                      className={"mr-auto ml-[10px] s:mr-0 s:ml-0 "}
                     />
                     <div
                       className={`inline-block p-3 rounded-lg ${
                         message.isUser ? "bg-gray-700" : "bg-gray-800"
                       } max-w-[80%] mx-2 flex items-center justify-around`}
                     >
-                      <div className={` flex gap-[30px] items-center mb-[-10px] h-[50px]`}>
-                        <div className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}></div>
-                        <div className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}></div>
-                        <div className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}></div>
+                      <div
+                        className={` flex gap-[30px] items-center mb-[-10px] h-[50px]`}
+                      >
+                        <div
+                          className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}
+                        ></div>
+                        <div
+                          className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}
+                        ></div>
+                        <div
+                          className={`${ChatAppCss.dot} w-[8px] h-[8px] rounded-full bg-white opacity-0`}
+                        ></div>
                       </div>
                     </div>
                   </div>
@@ -151,58 +184,57 @@ export default function ChatbotUI() {
                 {message.text !== "" && (
                   <div
                     className={`inline-block p-3 rounded-lg ${
-                      message.isUser ? "bg-gray-700 s:ml-[78px] " : "bg-gray-800 s:mr-[78px]"
+                      message.isUser
+                        ? "bg-gray-700 s:ml-[78px] "
+                        : "bg-gray-800 s:mr-[78px]"
                     }  mx-2 font-extralight text-[18px] leading-[24px]  s:max-w-fit m:w-[680px]`}
                   >
                     {message.isUser ? (
-                      <div className='p-[10px]'>
-                        {message.text}
-                      </div>
+                      <div className="p-[10px]">{message.text}</div>
                     ) : (
                       // git <TypingEffect text={message.text} />
 
-                       <FormattedText text={message.text} />
+                      <FormattedText text={message.text} />
                     )}
-                    
-
                   </div>
                 )}
                 {message.isUser && (
                   <img
                     src="/images/user.svg"
-                    className={'mr-[10px] s:mr-[0]'}
+                    className={"mr-[10px] s:mr-[0]"}
                   />
                 )}
               </div>
             ))}
           </ScrollArea>
           <div
-            className={`relative w-[70vw] mx-auto p-4  border-gray-800 flex items-center`}
+            className={`relative w-[90vw] s:w-[70vw] mx-auto py-4  border-gray-800 flex items-center`}
           >
             <textarea
-              value={prompt}
               onChange={(e) => {
                 setPrompt(e.target.value);
-                handleTextAreaResize();
+                handleTextAreaResize(false);
               }}
+              id='textarea'
               placeholder="Type your message..."
-              className={` break-words outline-none w-full border-2 border-[#ffe7e1] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex-grow mr-2 h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[20px] pr-[80px] font-light text-2xl resize-none overflow-y-auto `}
-              onInput={handleTextAreaResize}
+              className={` break-words outline-none w-full border-2 border-[#ffe7e1] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] h-[60px] m:h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[16px] m:py-[20px] pr-[50px] m:pr-[80px] font-light text-xl m:text-2xl resize-none overflow-y-auto `}
+              onInput={() => handleTextAreaResize(false)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault(); // Prevents newline on enter in the textarea
                   sendPrompt();
-                  reset(e);
+                  reset();
                 }
               }}
             />
             <Button
               onClick={() => {
                 sendPrompt();
-                reset(e);
+                reset();
+                handleTextAreaResize(true)
               }}
               size="icon"
-              className={` absolute right-[50px] bottom-[35px] bg-transparent hover:bg-gray-800`}
+              className={` absolute w-[30px] right-[20px] m:right-[50px] bottom-[26px] m:bottom-[35px] bg-transparent cursor-pointer hover:bg-gray-800`}
             >
               <img src="/images/send.svg" alt="send" />
             </Button>

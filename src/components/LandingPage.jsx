@@ -26,7 +26,7 @@ const LandingPage = ({ turnLandingOff }) => {
           </div>
           <div className='font-semibold text-[14px] leading-[19px] text-[#FFFFFF78] l:text-[24px] l:leading-[32px] l:font-normal'>Proverbs 9:10-12</div>
           <div
-            className={`mb-[25px] l:mb-0 ${LandingPageCss.start} bg-[#EF4E25] flex justify-between items-center rounded-[13px] mx-auto text-[20px] leading-[27px] font-bold w-[150px] h-[50px] l:w-[240px] l:h-[71px] p-[5px_11px] l:p-[9px_20px] l:ml-[27%] l:text-[31px] l:leading-[43px] l:font-normal shadow-[0px_4px_4px_0px_#00000040] mt-[15px]`}
+            className={`mb-[25px] l:mb-0 ${LandingPageCss.start} bg-[#EF4E25] flex justify-between items-center cursor-pointer rounded-[13px] mx-auto text-[20px] leading-[27px] font-bold w-[150px] h-[50px] l:w-[240px] l:h-[71px] p-[5px_11px] l:p-[9px_20px] l:ml-[27%] l:text-[31px] l:leading-[43px] l:font-normal shadow-[0px_4px_4px_0px_#00000040] mt-[15px]`}
             onClick={() => turnLandingOff()}
           >
             <div className={LandingPageCss.buttonText}>Start Chat</div>
