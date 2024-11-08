@@ -6,7 +6,8 @@ const LandingPage = ({ turnLandingOff }) => {
       <img
         className='absolute w-[170px] top-[35px] left-[35px] l:top-[40px] l:left-[40px]'
         src="/images/VERSEWISE.svg"
-        alt=""
+        alt="Logo of VERSEWise"
+        loading="lazy"
       />
       <div className={`flex flex-col l:flex-row w-full justify-center text-white`}>
         <img
