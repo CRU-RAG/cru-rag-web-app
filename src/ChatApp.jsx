@@ -92,7 +92,7 @@ export default function ChatbotUI() {
         textarea.style.height = screenWidth < 500 ? "60px" : "80px";
         textarea.classList.add("notScrollable");
       } else {
-          textarea.style.height = `${Math.min(textarea.scrollHeight, (screenWidth < 500 ? 200 : 500))}px`;
+          textarea.style.height = `${Math.min(textarea.scrollHeight, (screenWidth < 500 ? 200 : 350))}px`;
         textarea.classList.remove("notSscrollable");
       }
     } else {
@@ -142,7 +142,7 @@ export default function ChatbotUI() {
                   !message.isUser
                     ? "justify-start flex-col"
                     : "justify-end flex-col-reverse"
-                } mx-auto w-[95%] m:w-[90%] l:w-[80%] xl:w-[70%]  s:flex-row`} // Centering messages
+                } mx-auto w-[95%] m:w-[90%] l:w-[80%] xl:w-[70%] xxl:w-[60%] s:flex-row`} // Centering messages
               >
                 {!message.isUser && message.text !== "" && (
                   <img
@@ -208,7 +208,7 @@ export default function ChatbotUI() {
             ))}
           </ScrollArea>
           <div
-            className={`relative w-[90vw] s:w-[70vw] mx-auto py-4  border-gray-800 flex items-center`}
+            className={`relative w-[90vw] s:w-[85vw] m:w-[80vw] xl:w-[70vw] xxl:w-[60vw] mx-auto py-4  border-gray-800 flex items-center`}
           >
             <textarea
               onChange={(e) => {
@@ -234,7 +234,7 @@ export default function ChatbotUI() {
                 handleTextAreaResize(true)
               }}
               size="icon"
-              className={` absolute w-[30px] right-[20px] m:right-[50px] bottom-[26px] m:bottom-[35px] bg-transparent cursor-pointer hover:bg-gray-800`}
+              className={` absolute w-[30px] m:w-[40px] right-[20px] m:right-[20px] bottom-[26px] m:bottom-[35px] bg-transparent cursor-pointer hover:bg-gray-800`}
             >
               <img src="/images/send.svg" alt="send" />
             </Button>
