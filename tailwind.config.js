@@ -53,7 +53,17 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		screens: {
+			'xxl': '1500px',
+			'xl' : '1300px',
+			'l' : '1100px',
+			'm' : '850px',
+			's' : '500px'
+		},
+		fontFamily: {
+			sans: ['Noto Sans', 'sans-serif'],
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
