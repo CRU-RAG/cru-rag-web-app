@@ -39,6 +39,7 @@ export const GoogleGeminiEffect = ({
             the Holy One is understanding.`}
      
       </p>
+      <div className='font-semibold text-[14px] mt-4 leading-[19px] text-[#FFFFFF78] l:text-[24px] l:leading-[32px] l:font-normal'>Proverbs 9:10-12</div>
       </p>
       <div className="w-full h-[890px] -top-60 md:-top-40 flex items-center justify-center bg-red-transparent absolute">
         <button onClick={() => turnLandingOff()} className="font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1 md:mt-[130px] mt-8 z-30 md:text-base text-black text-xs w-fit mx-auto">
