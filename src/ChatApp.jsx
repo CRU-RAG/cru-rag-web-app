@@ -232,7 +232,7 @@ export default function ChatbotUI() {
               }}
               id='textarea'
               placeholder="Type your message..."
-              className={` break-words outline-none px-4 w-full  h-[60px] m:h-[80px]  bg-gray-800 text-white pl-[20px] py-[16px] m:py-[24px] pr-[50px] m:pr-[80px] font-light text-md m:text-2xl resize-none overflow-y-auto `}
+              className={`${prompt==""?'':'cursor-pointer'} break-words outline-none px-4 w-full  h-[60px] m:h-[80px]  bg-gray-800 text-white pl-[20px] py-[16px] m:py-[24px] pr-[50px] m:pr-[80px] font-light text-md m:text-2xl resize-none overflow-y-auto `}
               onInput={() => handleTextAreaResize(true)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -244,6 +244,7 @@ export default function ChatbotUI() {
               cols={1}
             />
           </div>
+     
             <Button
               onClick={() => {
                 sendPrompt();
@@ -255,6 +256,9 @@ export default function ChatbotUI() {
             >
               <img src="/images/send.svg" alt="send" />
             </Button>
+        
+       
+         
             </div>
 
           </div>
