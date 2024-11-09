@@ -220,20 +220,20 @@ export default function ChatbotUI() {
             <div ref={bottomOfPanelRef}></div>
           </ScrollArea>
           <div className="w-[100vw] flex  justify-center  justify-items-center  rounded-full">
-            <div className="flex  bg-gray-800  rounded-full  shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] px-5">
+            <div className="flex  bg-gray-800  rounded-md  shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] px-5">
 
           <div
-            className={`relative w-[90vw] s:w-[85vw] m:w-[40vw] xl:w-[70vw] xxl:w-[60vw] h-auto    flex justify-center justify-items-center`}
+            className={`relative w-[70vw] s:w-[85vw] m:w-[40vw] xl:w-[70vw] xxl:w-[60vw] h-auto    flex justify-center justify-items-center`}
           >
             <textarea
               onChange={(e) => {
                 setPrompt(e.target.value);
                 handleTextAreaResize(false);
               }}
-              // id='textarea'
+              id='textarea'
               placeholder="Type your message..."
-              className={`  outline-none w-full px-5 rounded-l-full bg-red-800 text-white   overflow-hidden`}
-              // onInput={() => handleTextAreaResize(false)}
+              className={` break-words outline-none px-4 w-full  h-[60px] m:h-[80px]  bg-gray-800 text-white pl-[20px] py-[16px] m:py-[24px] pr-[50px] m:pr-[80px] font-light text-md m:text-2xl resize-none overflow-y-auto `}
+              onInput={() => handleTextAreaResize(true)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault(); // Prevents newline on enter in the textarea
@@ -241,10 +241,7 @@ export default function ChatbotUI() {
                   reset();
                 }
               }}
-            cols={1}
-            wrap="physical"
-            rows={1}
-
+              cols={1}
             />
           </div>
             <Button
