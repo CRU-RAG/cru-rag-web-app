@@ -219,18 +219,21 @@ export default function ChatbotUI() {
             ))}
             <div ref={bottomOfPanelRef}></div>
           </ScrollArea>
+          <div className="w-[100vw] flex  justify-center  justify-items-center  rounded-full">
+            <div className="flex  bg-gray-800  rounded-full  shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] px-5">
+
           <div
-            className={`relative w-[90vw] s:w-[85vw] m:w-[80vw] xl:w-[70vw] xxl:w-[60vw] mx-auto py-4  border-gray-800 flex items-center`}
+            className={`relative w-[90vw] s:w-[85vw] m:w-[40vw] xl:w-[70vw] xxl:w-[60vw] h-auto    flex justify-center justify-items-center`}
           >
             <textarea
               onChange={(e) => {
                 setPrompt(e.target.value);
                 handleTextAreaResize(false);
               }}
-              id='textarea'
+              // id='textarea'
               placeholder="Type your message..."
-              className={` break-words outline-none w-full border-2 border-[#ffe7e1] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] h-[60px] m:h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[16px] m:py-[24px] pr-[50px] m:pr-[80px] font-light text-xl m:text-2xl resize-none overflow-y-auto `}
-              onInput={() => handleTextAreaResize(false)}
+              className={`  outline-none w-full px-5 rounded-l-full bg-red-800 text-white   overflow-hidden`}
+              // onInput={() => handleTextAreaResize(false)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault(); // Prevents newline on enter in the textarea
@@ -238,7 +241,12 @@ export default function ChatbotUI() {
                   reset();
                 }
               }}
+            cols={1}
+            wrap="physical"
+            rows={1}
+
             />
+          </div>
             <Button
               onClick={() => {
                 sendPrompt();
@@ -246,11 +254,14 @@ export default function ChatbotUI() {
                 handleTextAreaResize(true)
               }}
               size="icon"
-              className={` absolute w-[30px] m:w-[40px] right-[20px] m:right-[20px] bottom-[26px] m:bottom-[35px] bg-transparent cursor-pointer hover:bg-gray-800`}
+              className={` self-end mb-4  bg-transparent cursor-pointer `}
             >
               <img src="/images/send.svg" alt="send" />
             </Button>
+            </div>
+
           </div>
+          <p className="mb-5 text-center text-gray-400 mt-2 text-sm">VERSEwise Ai can make mistakes. Check important info.</p>
         </div>
       )}
     </>
