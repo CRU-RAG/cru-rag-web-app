@@ -10,6 +10,7 @@ import LandingPage from "./components/LandingPage";
 import TypingEffect from "./components/TypingEffect";
 import FormattedText from "./components/FormattedText";
 import "./index.css";
+import { footer } from "./resource/content";
 
 export default function ChatbotUI() {
   const [landingPage, setLandingPage] = useState(true);
@@ -262,7 +263,7 @@ export default function ChatbotUI() {
             </div>
 
           </div>
-          <p className="mb-5 text-center text-gray-400 mt-2 text-sm">VERSEwise Ai can make mistakes. Check important info.</p>
+          <p className="mb-5 text-center text-gray-400 mt-2 text-sm">{footer.chatinfo}</p>
         </div>
       )}
     </>
