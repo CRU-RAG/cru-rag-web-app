@@ -53,8 +53,8 @@ export const GoogleGeminiEffect = ({
         className="p-1 md:p-4 border rounded-3xl dark:bg-neutral-900  bg-stone-700 border-gray-600 dark:border-neutral-800 mx-auto w-3/4 h-1/2 md:h-3/4"
       >
 <Compare
-       firstImage="https://assets.aceternity.com/notes-dark.png"
-       secondImage="/images/god.png"
+       firstImage="/images/ai.png"
+       secondImage="/images/ai3.png"
        firstImageClassName="object-cover object-left-top w-full"
        secondImageClassname="object-cover object-left-top w-full"
        className="w-full h-full rounded-[22px] md:rounded-lg "
