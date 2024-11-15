@@ -2,11 +2,12 @@
     "compilerOptions": {
       "target": "esnext",
       "module": "esnext",
+      "moduleResolution": "node",
       "baseUrl": ".",
       "paths": {
-        "@/*": ["./src/*"]
+        "@/*": ["src/*"]
       },
-      "jsx": "react-jsx",
+      "jsx": "react",
       "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": true,

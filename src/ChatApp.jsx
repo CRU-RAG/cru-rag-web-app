@@ -1,16 +1,18 @@
 import { useState, useEffect, useRef } from "react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+// import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Send, User } from "lucide-react";
+// import { Send, User } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import ChatAppCss from "./styles/ChatApp.module.css";
-import LandingPage from "./components/LandingPage";
-import TypingEffect from "./components/TypingEffect";
+// import LandingPage from "./components/LandingPage";
+// import TypingEffect from "./components/TypingEffect";
 import FormattedText from "./components/FormattedText";
 import "./index.css";
 import { footer } from "./resource/content";
+import Home from "./components/Home";
+// import { GoogleGeminiEffectDemo, Home } from "./components/Home";
 
 export default function ChatbotUI() {
   const [landingPage, setLandingPage] = useState(true);
@@ -123,8 +125,12 @@ export default function ChatbotUI() {
   return (
     <>
       {landingPage && (
-        <LandingPage turnLandingOff={() => setLandingPage(false)} />
-      )}
+        // <LandingPage turnLandingOff={() => setLandingPage(false)} />
+    <>
+  <Home/>
+     
+    </>
+     )}
       {!landingPage && (
         <div
           className={`relative font-sans flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
