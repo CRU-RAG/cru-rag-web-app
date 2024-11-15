@@ -14,8 +14,15 @@ import ModeToggle  from "@/components/mode-toggle";
 import { Dock, DockIcon } from "./ui/dock";
 import Safari from "./ui/safari";
 import AnimatedGradientText from "./ui/animated-gradient-text";
-
-
+import { BorderBeam } from "./ui/border-beam";
+import Partnerwithus from './Partnerwithus';
+import ShineBorder from "./ui/shine-border";
+import Ripple from "./ui/ripple";
+import Meteors from "./ui/meteors";
+import {GoogleGeminiEffect} from "./ui/GoogleGeminiEffect";
+import { useScroll, useTransform } from "framer-motion";
+import WordRotate from "./ui/word-rotate";
+import { footer } from "@/resource/content";
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 const Icons = {
@@ -94,19 +101,25 @@ const DATA = {
 };
 
  function NavHome() {
+ 
+ 
   return (
     <div className="relative flex min-h-[100vh] w-full flex-col items-center justify-center overflow-hidden  border bg-background md:shadow-xl">
-
+   <Meteors number={30} />
       {/* <span classNameName="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">  */}
       <div className="flex w-full max-w-2xl flex-col space-y-4 overflow-hidden pt-8 lg:pt-48">
-  <h1 className="text-center  text-4xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl">
+  <h1 className="  text-center  text-4xl font-extrabold leading-tight text-foreground sm:text-5xl md:text-6xl">
     <span className="inline-block px-1 md:px-2 font-semibold text-balance">Automate</span>
     <span className="inline-block px-1 md:px-2 font-semibold text-balance">your</span>
-    <span className="inline-block px-1 md:px-2 font-semibold text-balance">Stady</span>
+   
+    <span className="">  <WordRotate
+      className="inline-block px-1 md:px-2 font-semibold text-balance"
+      words={["Stady 👩‍🎤", "Referenc 📑","Energy⚡","Time ⌚"]}
+    /></span>
     <span className="inline-block pt-4 px-1 md:px-2 font-semibold text-balance">with VERSEwise</span>
   </h1>
   <p className="mx-auto max-w-xl text-center text-lg leading-7 text-muted-foreground sm:text-xl sm:leading-9 text-balance">
-    No matter what problem you have, our AI can help you solve it.
+    No matter what Quastion you have, our AI can help you solve it.
   </p>
 </div>
 {/* <div className=" w-[200px] md:mx-auto  mt-6 flex md: max-w-2xl flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
@@ -148,18 +161,31 @@ const DATA = {
     <p className="text-gray-500 text-sm">Try now. No credit card required.
 
 </p>
-<div className="relative mt-10 px-2 lg:p-0">
+<div className="block lg:hidden">
+
+<Ripple />
+</div>
+
+<div className="relative mt-10 px-2 lg:p-0 rounded-2xl">
       <Safari
         url="versewise.io"
-        className="size-full"
+        className="size-full p-1 rounded-md"
         src="./images/ai2.png"
       />
+        <BorderBeam size={250} duration={12} delay={1} />
     </div>
+
+    {/* patner with us! */}
+    <p className=" text-center p-2 text-5xl mt-16 mb-3   font-bold">What People Are Saying</p>
+    <p className=" text-center p-2 text-gray-500 inline-block max-w-96 mb-5">Don't just take our word for it. Here's what real people are saying about Versewise Ai on Twitter.</p>
+    <Partnerwithus/>
       {/* </span> */}
-      <TooltipProvider>
-        <Dock direction="middle">
+      <div className="  bottom-8 fixed">
+
+      <TooltipProvider  >
+        <Dock className='bg-white' direction="middle">
           {DATA.navbar.map((item) => (
-            <DockIcon key={item.label}>
+            <DockIcon  key={item.label}>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <a
@@ -167,7 +193,7 @@ const DATA = {
                     aria-label={item.label}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full",
+                      "size-12 rounded-full hover:bg-slate-200",
                     )}
                   >
                     <item.icon className="size-4" />
@@ -181,7 +207,7 @@ const DATA = {
           ))}
           <Separator orientation="vertical" className="h-full" />
           {Object.entries(DATA.contact.social).map(([name, social]) => (
-            <DockIcon key={name}>
+            <DockIcon  key={name}>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <a
@@ -189,7 +215,7 @@ const DATA = {
                     aria-label={social.name}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full",
+                      "size-12 rounded-full hover:bg-slate-200",
                     )}
                   >
                     <social.icon className="size-4" />
@@ -201,19 +227,14 @@ const DATA = {
               </Tooltip>
             </DockIcon>
           ))}
-          <Separator orientation="vertical" className="h-full py-2" />
-          <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                {/* <ModeToggle classNameName="rounded-full" /> */}
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Theme</p>
-              </TooltipContent>
-            </Tooltip>
-          </DockIcon>
+         
         </Dock>
       </TooltipProvider>
+      </div>
+      <div className="h-[10vh] flex justify-center  justify-items-center">
+
+<p className="mt-10   text-center text-gray-500  text-sm">{footer.landinginfo}</p>
+     </div>
     </div>
   );
 }

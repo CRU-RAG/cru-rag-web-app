@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"; // Assuming you have a utility function for cl
 import { footer, landingSecondPage } from "../../resource/content";
 import { actions } from "../../lib";
 import { Compare } from "./Compare";
+import React from "react";
 
 const transition = {
   duration: 0,
@@ -16,6 +17,10 @@ export const GoogleGeminiEffect = ({
 
   className,
   turnLandingOff
+}:{
+    pathLengths: any,
+  className: string,
+    turnLandingOff: () => void
 }) => {
   return (
     <div className={cn("sticky top-40", className)}>
@@ -77,7 +82,7 @@ export const GoogleGeminiEffect = ({
         className="absolute -top-60 md:-top-40 w-full hidden"
       >
      
-        {pathLengths.map((pathLength, index) => (
+        {pathLengths.map((pathLength: any, index: React.Key | null | undefined) => (
           <motion.path
             key={index}
             d={actions.paths.getPathD(index)} // Assuming `getPathD` is a function that returns the correct path data for each path
@@ -91,7 +96,7 @@ export const GoogleGeminiEffect = ({
         ))}
 
         {/* Gaussian blur for the background paths */}
-        {actions.paths.getBlurPaths().map((path, index) => (
+        {actions.paths.getBlurPaths().map((path: { d: string | undefined; stroke: string | undefined; }, index: React.Key | null | undefined) => (
           <path
             key={index}
             d={path.d}

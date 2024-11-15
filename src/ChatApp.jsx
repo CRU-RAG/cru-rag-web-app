@@ -127,7 +127,7 @@ export default function ChatbotUI() {
       {landingPage && (
         // <LandingPage turnLandingOff={() => setLandingPage(false)} />
     <>
-  <Home/>
+  <Home turnLandingOff={() => setLandingPage(false)}/>
      
     </>
      )}
