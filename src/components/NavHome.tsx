@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarIcon, ChevronRight, HomeIcon, MailIcon, PencilIcon } from "lucide-react";
+import { CalendarIcon, ChevronRight, MailIcon  } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -16,16 +16,14 @@ import Safari from "./ui/safari";
 import AnimatedGradientText from "./ui/animated-gradient-text";
 import { BorderBeam } from "./ui/border-beam";
 import Partnerwithus from './Partnerwithus';
-import ShineBorder from "./ui/shine-border";
 import Ripple from "./ui/ripple";
 import Meteors from "./ui/meteors";
-import {GoogleGeminiEffect} from "./ui/GoogleGeminiEffect";
-import { useScroll, useTransform } from "framer-motion";
+
 import WordRotate from "./ui/word-rotate";
-import { footer } from "@/resource/content";
+import { DATA, footer, NavHomeContent } from "@/resource/content";
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
-const Icons = {
+export const Icons = {
   calendar: (props: IconProps) => <CalendarIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   linkedin: (props: IconProps) => (
@@ -37,27 +35,14 @@ const Icons = {
       />
     </svg>
   ),
-  x: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <title>X</title>
-      <path
-        fill="currentColor"
-        d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
-      />
-    </svg>
-  ),
-  youtube: (props: IconProps) => (
-    <svg
-      width="32px"
-      height="32px"
-      viewBox="0 0 32 32"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <title>youtube</title>
-      <path d="M29.41,9.26a3.5,3.5,0,0,0-2.47-2.47C24.76,6.2,16,6.2,16,6.2s-8.76,0-10.94.59A3.5,3.5,0,0,0,2.59,9.26,36.13,36.13,0,0,0,2,16a36.13,36.13,0,0,0,.59,6.74,3.5,3.5,0,0,0,2.47,2.47C7.24,25.8,16,25.8,16,25.8s8.76,0,10.94-.59a3.5,3.5,0,0,0,2.47-2.47A36.13,36.13,0,0,0,30,16,36.13,36.13,0,0,0,29.41,9.26ZM13.2,20.2V11.8L20.47,16Z" />
-    </svg>
+  discord: (props: IconProps) => (
+    <svg width="800px" height="800px" viewBox="0 -28.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+    <g>
+        <path d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z" fill="#5865F2" fill-rule="nonzero">
+
+</path>
+    </g>
+</svg>
   ),
   github: (props: IconProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
@@ -69,97 +54,49 @@ const Icons = {
   ),
 };
 
-const DATA = {
-  navbar: [
-    { href: "#", icon: HomeIcon, label: "Home" },
-    { href: "#", icon: PencilIcon, label: "Blog" },
-  ],
-  contact: {
-    social: {
-      GitHub: {
-        name: "GitHub",
-        url: "#",
-        icon: Icons.github,
-      },
-      LinkedIn: {
-        name: "LinkedIn",
-        url: "#",
-        icon: Icons.linkedin,
-      },
-      X: {
-        name: "X",
-        url: "#",
-        icon: Icons.x,
-      },
-      email: {
-        name: "Send Email",
-        url: "#",
-        icon: Icons.email,
-      },
-    },
-  },
-};
 
- function NavHome() {
- 
- 
+type navProps ={
+  turnLandingOff:() => void
+}
+
+function NavHome({turnLandingOff}:navProps) {
   return (
     <div className="relative flex min-h-[100vh] w-full flex-col items-center justify-center overflow-hidden  border bg-background md:shadow-xl">
    <Meteors number={30} />
       {/* <span classNameName="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">  */}
       <div className="flex w-full max-w-2xl flex-col space-y-4 overflow-hidden pt-8 lg:pt-48">
   <h1 className="  text-center  text-4xl font-extrabold leading-tight text-foreground sm:text-5xl md:text-6xl">
-    <span className="inline-block px-1 md:px-2 font-semibold text-balance">Automate</span>
-    <span className="inline-block px-1 md:px-2 font-semibold text-balance">your</span>
+    <span className=" font-sans inline-block px-1 md:px-2 font-semibold text-balance"> {NavHomeContent.h1.line1}</span>
+    <span className="inline-block px-1 md:px-2 font-semibold text-balance"> {NavHomeContent.h1.line2}</span>
    
     <span className="">  <WordRotate
       className="inline-block px-1 md:px-2 font-semibold text-balance"
-      words={["Stady 👩‍🎤", "Referenc 📑","Energy⚡","Time ⌚"]}
+      words={["Study ", "Reference ","Energy","Time "]}
     /></span>
-    <span className="inline-block pt-4 px-1 md:px-2 font-semibold text-balance">with VERSEwise</span>
+    <span className="inline-block pt-4 px-1 md:px-2 font-semibold text-balance"> {NavHomeContent.h1.line3}</span>
   </h1>
   <p className="mx-auto max-w-xl text-center text-lg leading-7 text-muted-foreground sm:text-xl sm:leading-9 text-balance">
-    No matter what Quastion you have, our AI can help you solve it.
+ {NavHomeContent.h1.line4}
   </p>
 </div>
-{/* <div className=" w-[200px] md:mx-auto  mt-6 flex md: max-w-2xl flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-  <a
-    href="/signup"
-    className="flex w-full items-center justify-center gap-2 h-10 px-4 py-2 rounded-md text-sm font-medium bg-primary text-background hover:bg-primary/90 ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 sm:w-auto bg-red-800"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      className="h-6 w-6"
-    >
-      <rect width="7" height="7" x="14" y="3" rx="1"></rect>
-      <path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"></path>
-    </svg>
-    Get started for free
-  </a>
-</div> */}
-<div className="z-10 flex min-h-20 items-center justify-center">
-      <AnimatedGradientText>
+
+<div  onClick={()=>turnLandingOff()} className="z-10 flex min-h-20 items-center justify-center">
+      <AnimatedGradientText  >
+      
         🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
         <span
+       
           className={cn(
             `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
           )}
         >
-          Introducing VERSEwise Ai
+        {NavHomeContent.action}
         </span>
         <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
       </AnimatedGradientText>
     </div>
-    <p className="text-gray-500 text-sm">Try now. No credit card required.
-
+    <p className="text-gray-500 text-sm">
+{NavHomeContent.subtitle}
 </p>
 <div className="block lg:hidden">
 
@@ -176,14 +113,14 @@ const DATA = {
     </div>
 
     {/* patner with us! */}
-    <p className=" text-center p-2 text-5xl mt-16 mb-3   font-bold">What People Are Saying</p>
-    <p className=" text-center p-2 text-gray-500 inline-block max-w-96 mb-5">Don't just take our word for it. Here's what real people are saying about Versewise Ai on Twitter.</p>
+    <p className=" text-center p-2 text-5xl mt-16 mb-3   font-bold">{NavHomeContent.review.title}</p>
+    <p className=" text-center p-2 text-gray-500 inline-block max-w-96 mb-5"> {NavHomeContent.review.subtitle}</p>
     <Partnerwithus/>
       {/* </span> */}
       <div className="  bottom-8 fixed">
 
       <TooltipProvider  >
-        <Dock className='bg-white' direction="middle">
+        <Dock className='' direction="middle">
           {DATA.navbar.map((item) => (
             <DockIcon  key={item.label}>
               <Tooltip>
@@ -193,7 +130,7 @@ const DATA = {
                     aria-label={item.label}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full hover:bg-slate-200",
+                      "size-12 rounded-full",
                     )}
                   >
                     <item.icon className="size-4" />
@@ -215,7 +152,7 @@ const DATA = {
                     aria-label={social.name}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full hover:bg-slate-200",
+                      "size-12 rounded-full",
                     )}
                   >
                     <social.icon className="size-4" />
@@ -227,7 +164,17 @@ const DATA = {
               </Tooltip>
             </DockIcon>
           ))}
-         
+           <Separator orientation="vertical" className="h-full py-2" />
+          <DockIcon>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <ModeToggle  />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Theme</p>
+              </TooltipContent>
+            </Tooltip>
+          </DockIcon>
         </Dock>
       </TooltipProvider>
       </div>

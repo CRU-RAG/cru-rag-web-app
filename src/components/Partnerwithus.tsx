@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import Marquee from "./ui/marquee";
-
 const reviews = [
   {
     name: "Jack",
@@ -39,10 +38,8 @@ const reviews = [
     img: "https://avatar.vercel.sh/james",
   },
 ];
-
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);
-
 const ReviewCard = ({
   img,
   name,

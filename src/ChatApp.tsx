@@ -1,29 +1,30 @@
 import { useState, useEffect, useRef } from "react";
-// import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
-// import { Send, User } from "lucide-react";
-import { v4 as uuidv4 } from "uuid";
+import { Button } from "./components/ui/button";
+
+import { ScrollArea } from "./components/ui/scroll-area";
+
 import ChatAppCss from "./styles/ChatApp.module.css";
-// import LandingPage from "./components/LandingPage";
-// import TypingEffect from "./components/TypingEffect";
-import FormattedText from "./components/FormattedText";
 import "./index.css";
 import { footer } from "./resource/content";
+import { v4 as uuidv4 } from 'uuid';
+import React from "react";
 import Home from "./components/Home";
-// import { GoogleGeminiEffectDemo, Home } from "./components/Home";
-
+import FormattedText from "./components/FormattedText";
+import NavHome from "./components/NavHome";
+type ThreadItem = {
+  text: string;
+  isUser: boolean;
+};
 export default function ChatbotUI() {
   const [landingPage, setLandingPage] = useState(true);
   const [beforeStart, setBeforeStart] = useState(true);
 
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState("Disconnected");
-  const [socket, setSocket] = useState(null);
-  const [thread, setThread] = useState([]);
-
-  const bottomOfPanelRef = useRef(null);
+  const [socket, setSocket] = useState<any>(null);
+  const [thread, setThread] = useState<ThreadItem[]>([]);
+ 
+  const bottomOfPanelRef = useRef<unknown|any>(null);
 
   useEffect(() => {
     if (bottomOfPanelRef.current) {
@@ -31,18 +32,18 @@ export default function ChatbotUI() {
     }
   }, [thread])
 
-  const addPrompt = (newPrompt) => {
-    setThread((prevThread) => [
-      ...prevThread,
+  const addPrompt = (newPrompt: string) => {
+    setThread((prevThreadany) => [
+      ...prevThreadany,
       { text: newPrompt, isUser: true },
       { text: "", isUser: false },
     ]);
   };
 
-  const addResponse = (newResponse) => {
+  const addResponse = (newResponse: string) => {
     setThread((prevThread) =>
       prevThread.map((item, index) =>
-        index == prevThread.length - 1 ? { ...item, text: newResponse } : item
+        index === prevThread.length - 1 ? { ...item, text: newResponse } : item
       )
     );
   };
@@ -64,7 +65,7 @@ export default function ChatbotUI() {
         setPrompt("");
       }
 
-      const scrollArea = document.getElementById('scroll');
+      const scrollArea = document.getElementById('scroll') as HTMLElement
       console.log("this is the scrollArea", scrollArea)
       scrollArea.scrollTop = scrollArea.scrollHeight;
     };
@@ -84,7 +85,7 @@ export default function ChatbotUI() {
   }, []);
 
   const sendPrompt = () => {
-    if (socket && socket.readyState === WebSocket.OPEN && prompt != "") {
+    if (socket  && socket.readyState === WebSocket.OPEN && prompt != "") {
       setBeforeStart(false);
       addPrompt(prompt);
       socket.send(prompt);
@@ -93,12 +94,12 @@ export default function ChatbotUI() {
     }
 
     // on mobile clicking somewhere on the screen hides the keyboard when sending
-    const logo = document.getElementById("logo");
+    const logo = document.getElementById("logo") as HTMLElement
     logo.click();
   };
 
-  const handleTextAreaResize = (isSend) => {
-    const textarea = document.getElementById('textarea')
+  const handleTextAreaResize = (isSend: boolean) => {
+    const textarea = document.getElementById('textarea') as any
     const screenWidth = window.innerWidth;
     // textarea.style.height = 'auto';
     if (!isSend) {
@@ -116,7 +117,7 @@ export default function ChatbotUI() {
   };
 
   const reset = () => {
-    const textarea = document.getElementById('textarea')
+    const textarea = document?.getElementById('textarea') as any
     const screenWidth = window.innerWidth;
     textarea.style.height = screenWidth < 500 ? "60px" : "80px";
     textarea.value = "";
@@ -127,8 +128,9 @@ export default function ChatbotUI() {
       {landingPage && (
         // <LandingPage turnLandingOff={() => setLandingPage(false)} />
     <>
-  <Home turnLandingOff={() => setLandingPage(false)}/>
-     
+  {/* <Home turnLandingOff={() => setLandingPage(false)}/> */}
+ 
+  <NavHome turnLandingOff={() =>setLandingPage(false)} />
     </>
      )}
       {!landingPage && (
