@@ -1,11 +1,16 @@
 {
     "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
+      "target": "ESNext",
+      "module": "ESNext",
+      "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+  
       "baseUrl": ".",
       "paths": {
-        "@/*": ["./src/*"]
+        "@/*": ["src/*"]
       },
+      "typeRoots": ["node_modules/@types", "./src/types"],
       "jsx": "react-jsx",
       "strict": true,
       "esModuleInterop": true,

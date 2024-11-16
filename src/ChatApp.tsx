@@ -1,26 +1,30 @@
 import { useState, useEffect, useRef } from "react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Send, User } from "lucide-react";
-import { v4 as uuidv4 } from "uuid";
-import ChatAppCss from "./styles/ChatApp.module.css";
-import LandingPage from "./components/LandingPage";
-import TypingEffect from "./components/TypingEffect";
-import FormattedText from "./components/FormattedText";
-import "./index.css";
+import { Button } from "./components/ui/button";
 
+import { ScrollArea } from "./components/ui/scroll-area";
+
+import ChatAppCss from "./styles/ChatApp.module.css";
+import "./index.css";
+import { footer } from "./resource/content";
+import { v4 as uuidv4 } from 'uuid';
+import React from "react";
+import Home from "./components/Home";
+import FormattedText from "./components/FormattedText";
+import NavHome from "./components/NavHome";
+type ThreadItem = {
+  text: string;
+  isUser: boolean;
+};
 export default function ChatbotUI() {
   const [landingPage, setLandingPage] = useState(true);
   const [beforeStart, setBeforeStart] = useState(true);
 
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState("Disconnected");
-  const [socket, setSocket] = useState(null);
-  const [thread, setThread] = useState([]);
-
-  const bottomOfPanelRef = useRef(null);
+  const [socket, setSocket] = useState<any>(null);
+  const [thread, setThread] = useState<ThreadItem[]>([]);
+ 
+  const bottomOfPanelRef = useRef<unknown|any>(null);
 
   useEffect(() => {
     if (bottomOfPanelRef.current) {
@@ -28,18 +32,18 @@ export default function ChatbotUI() {
     }
   }, [thread])
 
-  const addPrompt = (newPrompt) => {
-    setThread((prevThread) => [
-      ...prevThread,
+  const addPrompt = (newPrompt: string) => {
+    setThread((prevThreadany) => [
+      ...prevThreadany,
       { text: newPrompt, isUser: true },
       { text: "", isUser: false },
     ]);
   };
 
-  const addResponse = (newResponse) => {
+  const addResponse = (newResponse: string) => {
     setThread((prevThread) =>
       prevThread.map((item, index) =>
-        index == prevThread.length - 1 ? { ...item, text: newResponse } : item
+        index === prevThread.length - 1 ? { ...item, text: newResponse } : item
       )
     );
   };
@@ -61,7 +65,7 @@ export default function ChatbotUI() {
         setPrompt("");
       }
 
-      const scrollArea = document.getElementById('scroll');
+      const scrollArea = document.getElementById('scroll') as HTMLElement
       console.log("this is the scrollArea", scrollArea)
       scrollArea.scrollTop = scrollArea.scrollHeight;
     };
@@ -81,7 +85,7 @@ export default function ChatbotUI() {
   }, []);
 
   const sendPrompt = () => {
-    if (socket && socket.readyState === WebSocket.OPEN && prompt != "") {
+    if (socket  && socket.readyState === WebSocket.OPEN && prompt != "") {
       setBeforeStart(false);
       addPrompt(prompt);
       socket.send(prompt);
@@ -90,12 +94,12 @@ export default function ChatbotUI() {
     }
 
     // on mobile clicking somewhere on the screen hides the keyboard when sending
-    const logo = document.getElementById("logo");
+    const logo = document.getElementById("logo") as HTMLElement
     logo.click();
   };
 
-  const handleTextAreaResize = (isSend) => {
-    const textarea = document.getElementById('textarea')
+  const handleTextAreaResize = (isSend: boolean) => {
+    const textarea = document.getElementById('textarea') as any
     const screenWidth = window.innerWidth;
     // textarea.style.height = 'auto';
     if (!isSend) {
@@ -113,7 +117,7 @@ export default function ChatbotUI() {
   };
 
   const reset = () => {
-    const textarea = document.getElementById('textarea')
+    const textarea = document?.getElementById('textarea') as any
     const screenWidth = window.innerWidth;
     textarea.style.height = screenWidth < 500 ? "60px" : "80px";
     textarea.value = "";
@@ -122,8 +126,13 @@ export default function ChatbotUI() {
   return (
     <>
       {landingPage && (
-        <LandingPage turnLandingOff={() => setLandingPage(false)} />
-      )}
+        // <LandingPage turnLandingOff={() => setLandingPage(false)} />
+    <>
+  {/* <Home turnLandingOff={() => setLandingPage(false)}/> */}
+ 
+  <NavHome turnLandingOff={() =>setLandingPage(false)} />
+    </>
+     )}
       {!landingPage && (
         <div
           className={`relative font-sans flex flex-col h-screen bg-[url('/images/Pattern.jpg')] bg-cover bg-center text-white`}
@@ -219,8 +228,11 @@ export default function ChatbotUI() {
             ))}
             <div ref={bottomOfPanelRef}></div>
           </ScrollArea>
+          <div className="w-[100vw] flex  justify-center  justify-items-center  rounded-full">
+            <div className="flex  bg-gray-800  rounded-md  shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] px-5">
+
           <div
-            className={`relative w-[90vw] s:w-[85vw] m:w-[80vw] xl:w-[70vw] xxl:w-[60vw] mx-auto py-4  border-gray-800 flex items-center`}
+            className={`relative w-[70vw] s:w-[85vw] m:w-[40vw] xl:w-[70vw] xxl:w-[60vw] h-auto    flex justify-center justify-items-center`}
           >
             <textarea
               onChange={(e) => {
@@ -229,8 +241,8 @@ export default function ChatbotUI() {
               }}
               id='textarea'
               placeholder="Type your message..."
-              className={` break-words outline-none w-full border-2 border-[#ffe7e1] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] h-[60px] m:h-[80px] rounded-[10px] bg-gray-800 text-white pl-[20px] py-[16px] m:py-[24px] pr-[50px] m:pr-[80px] font-light text-xl m:text-2xl resize-none overflow-y-auto `}
-              onInput={() => handleTextAreaResize(false)}
+              className={`${prompt==""?'':'cursor-pointer'} break-words outline-none px-4 w-full  h-[60px] m:h-[80px]  bg-gray-800 text-white pl-[20px] py-[16px] m:py-[24px] pr-[50px] m:pr-[80px] font-light text-md m:text-2xl resize-none overflow-y-auto `}
+              onInput={() => handleTextAreaResize(true)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault(); // Prevents newline on enter in the textarea
@@ -238,7 +250,10 @@ export default function ChatbotUI() {
                   reset();
                 }
               }}
+              cols={1}
             />
+          </div>
+     
             <Button
               onClick={() => {
                 sendPrompt();
@@ -246,11 +261,17 @@ export default function ChatbotUI() {
                 handleTextAreaResize(true)
               }}
               size="icon"
-              className={` absolute w-[30px] m:w-[40px] right-[20px] m:right-[20px] bottom-[26px] m:bottom-[35px] bg-transparent cursor-pointer hover:bg-gray-800`}
+              className={` self-end mb-4  bg-transparent cursor-pointer `}
             >
               <img src="/images/send.svg" alt="send" />
             </Button>
+        
+       
+         
+            </div>
+
           </div>
+          <p className="mb-5 text-center text-gray-400 mt-2 text-sm">{footer.chatinfo}</p>
         </div>
       )}
     </>
