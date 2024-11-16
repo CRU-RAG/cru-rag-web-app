@@ -1,7 +1,4 @@
-/* eslint-disable react/prop-types */
 import { cn } from "@/lib/utils";
-
-import React from "react";
 import Marquee from "./ui/marquee";
 
 const reviews = [
